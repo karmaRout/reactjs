@@ -4,6 +4,7 @@ import React from 'react';
 
 export default function Todolist(props) {
     // const {index, text, checked, handleTodoCheckboxToggle,handleDeleteItems} = props;
+    const {text} = props;
     // const todoClassName = checked ? ' checked' : '';
     // return (
     //   <div>
@@ -22,10 +23,11 @@ export default function Todolist(props) {
     //           onClick={e => handleDeleteItems(index)}>DELETE</button>
     //   </div>
     // );
+    
     return (
         <div>
             <label>
-                Wel come to Todolist
+                {text}
             </label>
         </div>
     );
