@@ -4,7 +4,8 @@ import React from 'react';
 
 export default function Todolist(props) {
     // const {index, text, checked, handleTodoCheckboxToggle,handleDeleteItems} = props;
-    const {text} = props;
+   //const {index, text, checked, handleTodoCheckboxToggle,handleDeleteItems} = props;
+   //const todoClassName = checked ? ' checked' : '';
     // const todoClassName = checked ? ' checked' : '';
     // return (
     //   <div>
@@ -27,8 +28,11 @@ export default function Todolist(props) {
     return (
         <div>
             <label>
-                {text}
+                {props.text}
             </label>
+            <button  
+            type="button" 
+           >DELETE</button>
         </div>
     );
   }

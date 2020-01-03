@@ -9,9 +9,6 @@ import TodoManageList from './component/todoManageList/todoManageList'
 class App extends Component {
   constructor(props){
     super(props);
-  }
-  handleEvent(){
-    console.log(this.props);
     this.state = {
       newTodo: '',
       todos: [
@@ -34,11 +31,27 @@ class App extends Component {
       ]
     };
   }
+  renderTodos() {
+    return this.state.todos.map((todo, index) => (
+      <div>
+          <Todolist 
+            key={index}
+            index={index}
+            text={todo.text} 
+            checked={todo.isComplete}/>
+            
+            
+      </div>
+    )).reverse();
+   
+        {this.renderTodos()}
+  }
   render() {
     return (
       <div>
         <TodoManageList/>
         <CompleteList/>
+        {this.renderTodos()}
       </div>
     );
   }
