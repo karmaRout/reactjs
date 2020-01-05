@@ -1,4 +1,5 @@
 import React from 'react';
+import './todomanageList.css';
 
 export default function TodoManageList(props) {
     //console.log(props);
@@ -12,8 +13,9 @@ export default function TodoManageList(props) {
     }
     return (
         <div>
-            <button onClick={e => props.pushNewItem(currItem)}>Add</button>
+            
             <input type="text" onChange={handleChange}></input>
+            <button  className="button" onClick={e => props.pushNewItem(currItem)}>+</button>
         </div>
     );
 }

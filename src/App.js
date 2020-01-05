@@ -84,12 +84,12 @@ class App extends Component {
       }
   renderTodos() {
     return this.state.todos.map((todo, index) => (
-      <div className= {(todo.isComplete ? 'line-tr' : '')}>
+      <div >
           <Todolist 
             key={index}
             index={index}
             text={todo.text} 
-            checked={todo.isComplete}  
+            isComplete={todo.isComplete}  
             deleteCurrentItem={this.deleteCurrentItem} 
             completeCurrentItem={this.completeCurrentItem}/>
             

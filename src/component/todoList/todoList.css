@@ -1,0 +1,12 @@
+.checked {
+    text-decoration: line-through;
+  }
+  .line-tr {
+    text-decoration: line-through;
+  }
+  .margin-lbl {
+    margin-left: 10px;
+  }
+  .margin-top {
+    margin-top: 4px;
+  }
