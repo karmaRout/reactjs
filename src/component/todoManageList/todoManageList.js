@@ -3,9 +3,8 @@ import React from 'react';
 export default function TodoManageList(props) {
     return (
         <div>
-            <label>
-                Wel come to to do manage list 
-            </label>
+            <button>Add</button>
+            <input type="text"></input>
         </div>
     );
 }

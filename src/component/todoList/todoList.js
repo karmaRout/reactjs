@@ -30,9 +30,14 @@ export default function Todolist(props) {
             <label>
                 {props.text}
             </label>
+            
             <button  
             type="button" 
-           >DELETE</button>
+            onClick={e => props.deleteCurrentItem(props.index)} index={props.index}>DELETE</button>
+
+            <button  
+            type="button" 
+            onClick={e => props.completeCurrentItem(props.index)} index={props.index}>Complete</button>
         </div>
     );
   }

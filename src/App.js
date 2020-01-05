@@ -28,17 +28,63 @@ class App extends Component {
           text: 'Buy daily items from new market',
           isComplete: false
         }
-      ]
+      ],
+      completeData:[]
     };
+    this.deleteCurrentItem = this.deleteCurrentItem.bind(this);
+    this.completeCurrentItem = this.completeCurrentItem.bind(this);
+    this.pushNewItem = this.pushNewItem.bind(this);
   }
+  deleteCurrentItem(todo_index) {
+    const updatedTodos = this.state.todos.map((todo,index) => {
+            //debugger;
+            if(index == todo_index) {
+              //alert(this.state.todos[todo_index].text);
+              var currIdx = this.state.todos[todo_index];
+              const idx = this.state.todos.indexOf(currIdx);
+              if (idx > -1) {
+                this.state.todos.splice(idx, 1);
+              }
+                console.log('hii');
+            }
+            return todo;
+            
+      });
+      this.setState(prevState => ({
+        todos: updatedTodos
+      }));
+    }
+    completeCurrentItem(todo_index) {
+        const updatedTodos = this.state.todos.map((todo,index) => {
+          if (index === todo_index) {
+            this.state.completeData.push(todo);
+            //debugger;
+            return {
+              ...todo,
+              isComplete: !todo.isComplete
+            };
+          }
+          
+          
+          return todo;
+        });
+        this.setState(prevState => ({
+          todos: updatedTodos
+        }));
+      }
+      pushNewItem(newItem) {
+      
+      }
   renderTodos() {
     return this.state.todos.map((todo, index) => (
-      <div>
+      <div className= {(todo.isComplete ? 'line-tr' : '')}>
           <Todolist 
             key={index}
             index={index}
             text={todo.text} 
-            checked={todo.isComplete}/>
+            checked={todo.isComplete}  
+            deleteCurrentItem={this.deleteCurrentItem} 
+            completeCurrentItem={this.completeCurrentItem}/>
             
             
       </div>
@@ -49,8 +95,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <TodoManageList/>
-        <CompleteList/>
+        <TodoManageList
+        pushNewItem={this.pushNewItem}
+        />
+        <div className={'bordr'}>
+        <CompleteList
+        completeData={this.state.completeData}/>
+        </div>
         {this.renderTodos()}
       </div>
     );
