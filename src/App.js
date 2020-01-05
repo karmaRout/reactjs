@@ -73,7 +73,14 @@ class App extends Component {
         }));
       }
       pushNewItem(newItem) {
-      
+       debugger;
+       console.log(newItem);
+       var copyTodo = this.state.todos;
+
+       copyTodo.push(newItem);
+       this.setState(prevState => ({
+        todos: copyTodo
+      }));
       }
   renderTodos() {
     return this.state.todos.map((todo, index) => (
