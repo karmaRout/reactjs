@@ -125,7 +125,7 @@ class App extends Component {
     return this.state.todos.map((todo, index) => (
       <div >
           <Todolist 
-            key={todo}
+            key={index}
             index={index}
             text={todo.text} 
             isComplete={todo.isComplete}
