@@ -7,9 +7,12 @@ export default function Completelist(props) {
         completeList = [{'text':'','isComplete':''}];
     }
     return (props.completeData.map((todo, index) => (
-        <label>
-            {completeList[index].text}
-        </label>
+        <div class="col-sm-4">
+            <label>
+                {completeList[index].text}
+            </label>
+        </div>
+        
         ))
     );
 }
