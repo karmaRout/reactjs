@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Todolist from './component/todoList/todoList';
 import CompleteList from './component/completeList/completeList';
@@ -14,19 +14,23 @@ class App extends Component {
       todos: [
         {
           text: 'Assignment',
-          isComplete: false
+          isComplete: false,
+          isEdit: false
         },
         {
           text: 'Nothing to do',
-          isComplete: false
+          isComplete: false,
+          isEdit: false
         },
         {
           text: 'Registration for new semister',
-          isComplete: false
+          isComplete: false,
+          isEdit: false
         },
         {
           text: 'Buy daily items from new market',
-          isComplete: false
+          isComplete: false,
+          isEdit: false
         }
       ],
       completeData:[]
@@ -34,6 +38,8 @@ class App extends Component {
     this.deleteCurrentItem = this.deleteCurrentItem.bind(this);
     this.completeCurrentItem = this.completeCurrentItem.bind(this);
     this.pushNewItem = this.pushNewItem.bind(this);
+    this.editCurrentItem = this.editCurrentItem.bind(this);
+    this.updateCurrentItem = this.updateCurrentItem.bind(this);
   }
   deleteCurrentItem(todo_index) {
     const updatedTodos = this.state.todos.map((todo,index) => {
@@ -54,6 +60,41 @@ class App extends Component {
         todos: updatedTodos
       }));
     }
+    updateCurrentItem(todo_index,obj) {
+      const updatedTodos = this.state.todos.map((todo,index) => {
+        if (index === todo_index) {
+          return {
+            ...todo,
+            text: obj.text,
+            isEdit: obj.isEdit
+          };
+        }
+        
+        
+        return todo;
+      });
+      this.setState(prevState => ({
+        todos: updatedTodos
+      }));
+      
+    }
+    editCurrentItem(todo_index) {
+      const updatedTodos = this.state.todos.map((todo,index) => {
+        if (index === todo_index) {
+          return {
+            ...todo,
+            isEdit: !todo.isEdit
+          };
+        }
+        
+        
+        return todo;
+      });
+      this.setState(prevState => ({
+        todos: updatedTodos
+      }));
+      
+    }
     completeCurrentItem(todo_index) {
         const updatedTodos = this.state.todos.map((todo,index) => {
           if (index === todo_index) {
@@ -73,8 +114,6 @@ class App extends Component {
         }));
       }
       pushNewItem(newItem) {
-       debugger;
-       console.log(newItem);
        var copyTodo = this.state.todos;
 
        copyTodo.push(newItem);
@@ -86,18 +125,21 @@ class App extends Component {
     return this.state.todos.map((todo, index) => (
       <div >
           <Todolist 
-            key={index}
+            key={todo}
             index={index}
             text={todo.text} 
-            isComplete={todo.isComplete}  
+            isComplete={todo.isComplete}
+            isEdit={todo.isEdit}  
             deleteCurrentItem={this.deleteCurrentItem} 
-            completeCurrentItem={this.completeCurrentItem}/>
+            completeCurrentItem={this.completeCurrentItem}
+            editCurrentItem={this.editCurrentItem}
+            updateCurrentItem={this.updateCurrentItem}/>
             
             
       </div>
     )).reverse();
    
-        {this.renderTodos()}
+       // {this.renderTodos()}
   }
   render() {
     return (
@@ -105,25 +147,14 @@ class App extends Component {
         <TodoManageList
         pushNewItem={this.pushNewItem}
         />
+       
+        {this.renderTodos()}
         <div className={'bordr'}>
         <CompleteList
         completeData={this.state.completeData}/>
         </div>
-        {this.renderTodos()}
       </div>
     );
   }
 }
-
-// export default App;
-// function App() {
-//   return (
-//     <div>
-//     <Todolist text='abc'/>
-//     <CompleteList/>
-//     <TodoManageList/>
-//     </div>
-//   );
-// }
-
 export default App;
