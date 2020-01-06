@@ -28,20 +28,29 @@ export default function Todolist(props) {
     
     return (
         <div class="margin-top">
-            <label className={(props.isComplete ? 'line-tr' : '')}>
-                {props.text}
-            </label>
-            <button  
-            type="button" 
-            class="btn btn-primary margin-lbl" 
+            <div class="row">
+                <div  class="col-sm-4">
+                <label className={(props.isComplete ? 'line-tr' : '')}>
+                    {props.text}
+                </label>
+                </div>
+                <div class="col-sm-1">
+                <button  
+                    type="button" 
+                    class="btn btn-primary margin-lbl " 
+                    
+                    onClick={e => props.completeCurrentItem(props.index)} index={props.index} >Complete</button>
+                </div>
+                
+                <div class="col-sm-1">
+                <button  
+                type="button" 
+                class="btn btn-danger margin-lbl"
+                
+                onClick={e => props.deleteCurrentItem(props.index)} index={props.index}>DELETE</button>
+                </div>
+            </div>
             
-            onClick={e => props.completeCurrentItem(props.index)} index={props.index}>Complete</button>
-            
-            <button  
-            type="button" 
-            class="btn btn-danger margin-lbl"
-            
-            onClick={e => props.deleteCurrentItem(props.index)} index={props.index}>DELETE</button>
 
             
         </div>
