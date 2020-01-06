@@ -38,7 +38,7 @@ class App extends Component {
   deleteCurrentItem(todo_index) {
     const updatedTodos = this.state.todos.map((todo,index) => {
             //debugger;
-            if(index == todo_index) {
+            if(index === todo_index) {
               //alert(this.state.todos[todo_index].text);
               var currIdx = this.state.todos[todo_index];
               const idx = this.state.todos.indexOf(currIdx);
